@@ -14,7 +14,7 @@ on:
 
 jobs:
   crawl:
-    runs-on: [self-hosted, linux]
+    runs-on: self-hosted
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
