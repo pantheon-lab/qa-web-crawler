@@ -1,0 +1,34 @@
+name: Run Web Crawler
+
+on:
+  workflow_dispatch:
+    inputs:
+      BASE_URL:
+        description: "The base URL to start crawling"
+        required: true
+        default: "https://www.cic.hk/chi/main/aboutcic/news_and_updates/events_calendar/event-896.html"
+      EXCLUSION_LIST:
+        description: "Comma-separated exclusion substrings (e.g. .pdf,.jpg,.docx,/en,/en/,/zh-cn,/zh-cn/)"
+        required: false
+        default: ".pdf,.jpg,.docx,/en,/en/,/zh-cn,/zh-cn/"
+
+jobs:
+  crawl:
+    runs-on: [self-hosted, linux]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Crawler
+        run: |
+          python crawler.py --base_url "${{ github.event.inputs.BASE_URL }}" --exclusion_list "${{ github.event.inputs.EXCLUSION_LIST }}"
