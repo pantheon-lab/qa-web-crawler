@@ -6,7 +6,7 @@ on:
       BASE_URL:
         description: "The base URL to start crawling"
         required: true
-        default: "https://www.cic.hk/chi/main/aboutcic/news_and_updates/events_calendar/event-896.html"
+        default: "https://www.cic.hk/chi/"
       EXCLUSION_LIST:
         description: "Comma-separated exclusion substrings (e.g. .pdf,.jpg,.docx,/en,/en/,/zh-cn,/zh-cn/)"
         required: false
@@ -32,3 +32,9 @@ jobs:
       - name: Run Crawler
         run: |
           python crawler.py --base_url "${{ github.event.inputs.BASE_URL }}" --exclusion_list "${{ github.event.inputs.EXCLUSION_LIST }}"
+
+      - name: Upload CSV Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: crawler-results
+          path: "crawled_full_html_*.csv"
