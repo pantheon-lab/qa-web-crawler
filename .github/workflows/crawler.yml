@@ -34,7 +34,7 @@ jobs:
           python crawler.py --base_url "${{ github.event.inputs.BASE_URL }}" --exclusion_list "${{ github.event.inputs.EXCLUSION_LIST }}"
 
       - name: Upload CSV Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: crawler-results
           path: "crawled_full_html_*.csv"
