@@ -149,7 +149,7 @@ if __name__ == "__main__":
         "--exclusion_list", 
         required=False, 
         help="Comma-separated exclusion substrings", 
-        default=".pdf,.jpg,.docx,/en,/en/,/zh-cn,/zh-cn/"
+        default=".pdf,.jpg,.docx"
     )
     args = parser.parse_args()
 
