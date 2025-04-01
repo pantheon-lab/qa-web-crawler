@@ -14,7 +14,8 @@ on:
 
 jobs:
   crawl:
-    runs-on: ubuntu-latest
+    name: Crawl web content
+    runs-on: [self-hosted, Linux]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
