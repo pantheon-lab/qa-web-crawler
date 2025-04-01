@@ -10,11 +10,11 @@ on:
       EXCLUSION_LIST:
         description: "Comma-separated exclusion substrings (e.g. .pdf,.jpg,.docx,/en,/en/,/zh-cn,/zh-cn/)"
         required: false
-        default: ".pdf,.jpg,.docx,/en,/en/,/zh-cn,/zh-cn/"
+        default: ""
 
 jobs:
   crawl:
-    runs-on: ubuntu-latest
+    runs-on: plab-office
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
